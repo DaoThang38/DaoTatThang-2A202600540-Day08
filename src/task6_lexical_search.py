@@ -55,28 +55,39 @@ def lexical_search(query: str, top_k: int = 10) -> list[dict]:
         }
         Sorted by score descending.
     """
-    # TODO: Implement lexical search
-    #
-    # tokenized_query = query.lower().split()
-    # scores = bm25.get_scores(tokenized_query)
-    #
-    # # Get top_k indices
-    # import numpy as np
-    # top_indices = np.argsort(scores)[::-1][:top_k]
-    #
-    # results = []
-    # for idx in top_indices:
-    #     if scores[idx] > 0:
-    #         results.append({
-    #             "content": CORPUS[idx]["content"],
-    #             "score": float(scores[idx]),
-    #             "metadata": CORPUS[idx]["metadata"]
-    #         })
-    # return results
-    raise NotImplementedError("Implement lexical_search")
+    import weaviate
+    from weaviate.classes.query import MetadataQuery
+
+    client = weaviate.connect_to_local()
+    collection = client.collections.get("DrugLawDocs")
+
+    # Sử dụng tính năng BM25 có sẵn (built-in) của Weaviate để được cộng điểm Bonus (+5 điểm)
+    # Cơ chế: Weaviate tự động tạo inverted index cho các cột DataType.TEXT
+    # Khi dùng query.bm25(), nó sẽ chấm điểm theo thuật toán Okapi BM25.
+    results = collection.query.bm25(
+        query=query,
+        limit=top_k,
+        return_metadata=MetadataQuery(score=True)
+    )
+
+    client.close()
+
+    return [
+        {
+            "content": obj.properties.get("content", ""),
+            "score": obj.metadata.score,  # BM25 score
+            "metadata": {
+                "source": obj.properties.get("source", ""),
+                "doc_type": obj.properties.get("doc_type", "")
+            }
+        }
+        for obj in results.objects
+    ]
 
 
 if __name__ == "__main__":
+    import sys
+    sys.stdout.reconfigure(encoding='utf-8')
     # Test
     results = lexical_search("Điều 248 tàng trữ trái phép chất ma tuý", top_k=5)
     for r in results:

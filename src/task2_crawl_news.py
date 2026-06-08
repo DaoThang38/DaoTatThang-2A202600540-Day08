@@ -26,10 +26,11 @@ def setup_directory():
 
 # TODO: Điền danh sách URL bài báo cần crawl
 ARTICLE_URLS = [
-    # Ví dụ:
-    # "https://vnexpress.net/...",
-    # "https://tuoitre.vn/...",
-    # "https://thanhnien.vn/...",
+    "https://tuoitre.vn/khoi-to-bat-tam-giam-ca-si-chi-dan-va-nguoi-mau-an-tay-20241114152737604.htm",
+    "https://thanhnien.vn/an-tay-va-chi-dan-bi-khoi-to-vi-to-chuc-su-dung-ma-tuy-185241114163000000.htm",
+    "https://tuoitre.vn/dien-vien-huu-tin-linh-7-nam-6-thang-tu-vi-to-chuc-su-dung-ma-tuy-20230428135804561.htm",
+    "https://thanhnien.vn/chau-viet-cuong-linh-an-13-nam-tu-vi-nhet-toi-vao-mieng-co-gai-den-chet-185848243.htm",
+    "https://tuoitre.vn/tin-tuc-phap-luat-ma-tuy-showbiz-viet.htm"
 ]
 
 
@@ -48,15 +49,14 @@ async def crawl_article(url: str) -> dict:
     from crawl4ai import AsyncWebCrawler
 
     # TODO: Implement crawling logic
-    # async with AsyncWebCrawler() as crawler:
-    #     result = await crawler.arun(url=url)
-    #     return {
-    #         "url": url,
-    #         "title": result.metadata.get("title", "Unknown"),
-    #         "date_crawled": datetime.now().isoformat(),
-    #         "content_markdown": result.markdown,
-    #     }
-    raise NotImplementedError("Implement crawl_article")
+    async with AsyncWebCrawler() as crawler:
+        result = await crawler.arun(url=url)
+        return {
+            "url": url,
+            "title": result.metadata.get("title", "Unknown") if result.metadata else "Unknown",
+            "date_crawled": datetime.now().isoformat(),
+            "content_markdown": result.markdown,
+        }
 
 
 async def crawl_all():
@@ -70,8 +70,8 @@ async def crawl_all():
         # Lưu file JSON
         filename = f"article_{i:02d}.json"
         filepath = DATA_DIR / filename
-        filepath.write_text(json.dumps(article, ensure_ascii=False, indent=2))
-        print(f"  ✓ Saved: {filepath}")
+        filepath.write_text(json.dumps(article, ensure_ascii=False, indent=2), encoding="utf-8")
+        print(f"  [v] Saved: {filepath}")
 
 
 if __name__ == "__main__":
