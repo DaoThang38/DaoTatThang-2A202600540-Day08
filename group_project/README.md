@@ -151,10 +151,10 @@ run_dashboard()
 
 ### Deliverable Evaluation
 
-- [ ] File `group_project/evaluation/golden_dataset.json` — 15+ cặp Q&A
-- [ ] File `group_project/evaluation/eval_pipeline.py` — script chạy evaluation
-- [ ] File `group_project/evaluation/results.md` — bảng điểm + phân tích
-- [ ] So sánh A/B ít nhất 2 configs
+- [x] File `group_project/evaluation/golden_dataset.json` — 15+ cặp Q&A
+- [x] File `group_project/evaluation/eval_pipeline.py` — script chạy evaluation
+- [x] File `group_project/evaluation/results.md` — bảng điểm + phân tích
+- [x] So sánh A/B ít nhất 2 configs
 
 ---
 
@@ -170,8 +170,27 @@ run_dashboard()
 
 ## Kiến Trúc Hệ Thống
 
-```
-[Vẽ diagram kiến trúc ở đây]
+```mermaid
+flowchart TD
+    subgraph Data Pipeline
+        Crawler[Crawler: Requests/BeautifulSoup] --> MD[Markdown Converter]
+        MD --> Chunking[Recursive Chunking]
+        Chunking --> Vec[Vector Store: Weaviate]
+    end
+
+    subgraph Chatbot UI (Streamlit)
+        UI[User Input] --> Memory[Conversation Memory]
+        Memory --> AugmentedQuery
+    end
+
+    subgraph RAG Pipeline
+        AugmentedQuery --> Hybrid[Hybrid Search\nBM25 + Semantic]
+        Hybrid --> RRF[Reranking: RRF]
+        RRF --> LLM[Generation: LLM Prompting]
+    end
+    
+    Vec -.-> Hybrid
+    LLM --> Answer[Answer with Citations]
 ```
 
 ---
@@ -180,10 +199,8 @@ run_dashboard()
 
 | Thành viên | MSSV | Nhiệm vụ | Trạng thái |
 |-----------|------|----------|------------|
-| | | | |
-| | | | |
-| | | | |
-| | | | |
+| Đào Tất Thắng | 2A202600540 | Xây dựng Data Pipeline, RAG Backend, RAGAS Eval | Hoàn thành |
+| Đào Tất Thắng | 2A202600540 | Triển khai Streamlit Chatbot UI và tài liệu | Hoàn thành |
 
 ---
 

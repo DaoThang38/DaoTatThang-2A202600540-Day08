@@ -30,9 +30,13 @@ def semantic_search(query: str, top_k: int = 10) -> list[dict]:
     from weaviate.classes.query import MetadataQuery
     from sentence_transformers import SentenceTransformer
 
+    # Khởi tạo model một lần duy nhất (caching) để tránh OOM GPU
+    global _semantic_model
+    if "_semantic_model" not in globals():
+        _semantic_model = SentenceTransformer("BAAI/bge-m3")
+
     # Bước 1: Embed query bằng cùng model ở Task 4
-    model = SentenceTransformer("BAAI/bge-m3")
-    query_embedding = model.encode(query, show_progress_bar=False).tolist()
+    query_embedding = _semantic_model.encode(query, show_progress_bar=False).tolist()
 
     # Bước 2: Query vector store (cosine similarity)
     client = weaviate.connect_to_local()

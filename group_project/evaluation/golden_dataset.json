@@ -1,7 +1,7 @@
 [
   {
     "question": "Hình phạt cho tội tàng trữ trái phép chất ma tuý theo Điều 249 Bộ luật Hình sự?",
-    "expected_answer": "Phạt tù từ 1 đến 5 năm đối với trường hợp tàng trữ từ 1g đến dưới 5g heroin hoặc cocaine, hoặc chất ma tuý khác với khối lượng tương đương.",
+    "expected_answer": "Phạt tù từ 1 đến 5 năm đối với lượng nhỏ chất ma túy; phạt tù từ 5 đến 10 năm đối với lượng lớn hơn.",
     "expected_context": "Bộ luật Hình sự 2015, Điều 249"
   },
   {
@@ -13,5 +13,70 @@
     "question": "Danh mục các chất ma tuý thuộc nhóm I theo quy định pháp luật Việt Nam gồm những chất nào?",
     "expected_answer": "Nhóm I gồm các chất ma tuý tuyệt đối cấm sử dụng trong y học và đời sống, bao gồm heroin, cocaine, methamphetamine, MDMA (ecstasy), cannabis (cần sa), và các chất tương tự.",
     "expected_context": "Nghị định 57/2022/NĐ-CP, Phụ lục I"
+  },
+  {
+    "question": "Ca sĩ Chi Dân bị khởi tố về tội gì và vào ngày nào?",
+    "expected_answer": "Ca sĩ Chi Dân (tên thật Nguyễn Trọng Hiếu) bị khởi tố và bắt tạm giam ngày 14/11/2024 về tội tàng trữ trái phép chất ma túy theo khoản 2 Điều 249 Bộ luật Hình sự.",
+    "expected_context": "article_01.md - vụ khởi tố Chi Dân và An Tây"
+  },
+  {
+    "question": "Người mẫu An Tây tên thật là gì và bị bắt vì tội gì?",
+    "expected_answer": "Người mẫu An Tây tên thật là Trần Thị Ngọc Bích, bị khởi tố về tội tàng trữ trái phép chất ma túy cùng thời điểm với ca sĩ Chi Dân vào ngày 14/11/2024.",
+    "expected_context": "article_01.md và article_05.md"
+  },
+  {
+    "question": "Diễn viên Hữu Tín bị kết án bao nhiêu năm tù và vì tội gì?",
+    "expected_answer": "Diễn viên Hữu Tín (tên thật Nguyễn Hữu Tín) bị TAND TP HCM kết án 7 năm 6 tháng tù vào năm 2023 về tội tổ chức sử dụng trái phép chất ma túy.",
+    "expected_context": "article_02.md và article_05.md"
+  },
+  {
+    "question": "Ca sĩ Châu Việt Cường bị kết án bao nhiêu năm tù?",
+    "expected_answer": "Ca sĩ Châu Việt Cường bị TAND TP HCM kết án 13 năm tù vào năm 2021 về tội giết người sau khi sử dụng ma túy (ketamine).",
+    "expected_context": "article_03.md và article_05.md"
+  },
+  {
+    "question": "Tội tổ chức sử dụng trái phép chất ma tuý theo pháp luật Việt Nam bị xử phạt như thế nào?",
+    "expected_answer": "Tội tổ chức sử dụng trái phép chất ma túy (Điều 255 Bộ luật Hình sự) bị phạt tù từ 2 đến 7 năm; từ 7 đến 15 năm với tình tiết tăng nặng.",
+    "expected_context": "article_04.md - phân tích pháp lý"
+  },
+  {
+    "question": "Quy trình cai nghiện bắt buộc tại cơ sở cai nghiện theo Luật Phòng chống ma tuý 2021 gồm mấy giai đoạn?",
+    "expected_answer": "Quy trình cai nghiện bắt buộc gồm 5 giai đoạn: tiếp nhận/phân loại; điều trị cắt cơn/giải độc; giáo dục/tư vấn/phục hồi hành vi; lao động trị liệu/học nghề; chuẩn bị tái hòa nhập cộng đồng.",
+    "expected_context": "Luật Phòng chống ma tuý 2021, Điều 29"
+  },
+  {
+    "question": "Công an TP HCM đã thu giữ loại ma túy gì tại căn hộ của Chi Dân?",
+    "expected_answer": "Công an TP HCM đã thu giữ ketamine và một số loại ma túy tổng hợp khác tại căn hộ của Chi Dân.",
+    "expected_context": "article_01.md và article_05.md"
+  },
+  {
+    "question": "Châu Việt Cường đã làm gì khiến nạn nhân tử vong?",
+    "expected_answer": "Sau khi sử dụng ma túy (ketamine), Châu Việt Cường đã nhét tỏi vào miệng và mũi một cô gái, khiến nạn nhân tử vong do ngạt thở.",
+    "expected_context": "article_03.md"
+  },
+  {
+    "question": "Những nghệ sĩ nào đã bị bắt vì liên quan tới ma tuý?",
+    "expected_answer": "Các nghệ sĩ bị bắt vì ma túy gồm: Chi Dân và An Tây (2024, tàng trữ ma túy), Hữu Tín (2023, tổ chức sử dụng ma túy, 7 năm 6 tháng tù), Châu Việt Cường (2021, giết người khi sử dụng ma túy, 13 năm tù).",
+    "expected_context": "article_05.md - tổng hợp"
+  },
+  {
+    "question": "Hình phạt cho tội sản xuất trái phép chất ma tuý theo pháp luật Việt Nam?",
+    "expected_answer": "Tôi không thể xác minh thông tin này từ nguồn hiện có.",
+    "expected_context": "Không có trong tài liệu (kiểm tra anti-hallucination)"
+  },
+  {
+    "question": "Nghị định 105/2021/NĐ-CP quy định về vấn đề gì liên quan đến ma tuý?",
+    "expected_answer": "Nghị định 105/2021/NĐ-CP quy định chi tiết và hướng dẫn thi hành một số điều của Luật Phòng, chống ma túy 2021.",
+    "expected_context": "Nghị định 105/2021/NĐ-CP"
+  },
+  {
+    "question": "Hữu Tín đã tổ chức cho người khác sử dụng ma túy ở đâu?",
+    "expected_answer": "Hữu Tín đã tổ chức cho nhiều người sử dụng ma túy tại căn hộ do anh ta thuê tại TP HCM từ tháng 1 đến tháng 3/2022.",
+    "expected_context": "article_02.md"
+  },
+  {
+    "question": "Ketamine được phân loại là chất ma tuý thuộc nhóm nào theo pháp luật Việt Nam?",
+    "expected_answer": "Tôi không thể xác minh thông tin cụ thể về phân loại nhóm của ketamine từ nguồn hiện có.",
+    "expected_context": "Không có thông tin cụ thể (kiểm tra anti-hallucination)"
   }
 ]

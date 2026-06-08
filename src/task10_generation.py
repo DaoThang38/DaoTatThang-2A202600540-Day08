@@ -118,12 +118,12 @@ def format_context(chunks: list[dict]) -> str:
 # GENERATION
 # =============================================================================
 
-def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
+def generate_with_citation(query: str, chunks: list[dict] = None, top_k: int = TOP_K) -> dict:
     """
     End-to-end RAG generation có citation.
 
     Pipeline:
-        1. Retrieve relevant chunks
+        1. Retrieve relevant chunks (nếu chưa truyền vào)
         2. Reorder để tránh lost in the middle
         3. Format context với source labels
         4. Build prompt (system + context + query)
@@ -132,6 +132,8 @@ def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
 
     Args:
         query: Câu hỏi của user
+        chunks: List các chunk đã retrieve. Nếu None sẽ tự động gọi retrieve()
+        top_k: Số lượng chunk tối đa nếu tự gọi retrieve()
 
     Returns:
         {
@@ -140,8 +142,9 @@ def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
             'retrieval_source': str  # 'hybrid' hoặc 'pageindex'
         }
     """
-    # Step 1: Retrieve
-    chunks = retrieve(query, top_k=top_k)
+    # Step 1: Retrieve nếu chưa có chunks
+    if chunks is None:
+        chunks = retrieve(query, top_k=top_k)
 
     # Step 2: Reorder
     reordered = reorder_for_llm(chunks)
