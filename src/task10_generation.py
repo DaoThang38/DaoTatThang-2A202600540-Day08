@@ -152,12 +152,21 @@ def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
     # Step 4: Build prompt
     user_message = f"Context:\n{context}\n\n---\n\nQuestion: {query}"
 
-    # Step 5: Call LLM
+    # Step 5: Call LLM (Hỗ trợ linh hoạt OpenAI hoặc các bên tương thích như Gemini, Groq, OpenRouter)
     from openai import OpenAI
-    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    
+    # Lấy thông tin từ file .env
+    api_key = os.getenv("OPENAI_API_KEY") or os.getenv("API_KEY")
+    base_url = os.getenv("BASE_URL") # Nếu dùng API khác thì thêm BASE_URL vào .env
+    model_name = os.getenv("MODEL_NAME", "gpt-4o-mini")
+
+    client = OpenAI(
+        api_key=api_key, 
+        base_url=base_url
+    )
 
     response = client.chat.completions.create(
-        model="gpt-4o-mini",
+        model=model_name,
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": user_message}
