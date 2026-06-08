@@ -22,7 +22,7 @@ from .task8_pageindex_vectorless import pageindex_search
 # CONFIGURATION
 # =============================================================================
 
-SCORE_THRESHOLD = 0.3   # Nếu best score < threshold → fallback PageIndex
+SCORE_THRESHOLD = 0.01   # Điểm RRF tối đa chỉ là ~0.033, nên 0.3 sẽ luôn bị fallback!
 DEFAULT_TOP_K = 5
 RERANK_METHOD = "rrf"  # "cross_encoder" | "mmr" | "rrf"
 
